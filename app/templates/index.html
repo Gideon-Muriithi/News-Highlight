@@ -1,42 +1,27 @@
+{% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% if title %}
-    <title> {{ text }}</title>
-    {% else %}
-    <title> News Highlight </title>
-    {% endif %}
-</head>
-
-<body>
-    <h1>{{ text }}</h1>
-    <!-- Popular news highlights section  -->
-    <h3> Business News Highlights </h3>
-    <ul>
-        {{ macro.displayHighlightList(business) }}
-    </ul>
-    <h3> Sports News Highlights </h3>
-    <ul>
-        {{ macro.displayHighlightList(sports) }}
-    </ul>
-    <h3> Weather News Highlights </h3>
-    <ul>
-        {{ macro.displayHighlightList(weather) }}
-    </ul>
-    <h3> Technology News Highlights </h3>
-    <ul>
-        {{ macro.displayHighlightList(tech) }}
-    </ul>
-    <h3> Political News Highlights </h3>
-    <ul>
-        {{ macro.displayHighlightList(politics) }}
-    </ul>
-</body>
-
-</html>
+{% block content %}
+<h1>{{ text }}</h1>
+<!-- Popular news highlights section  -->
+<h3> Business News Highlights </h3>
+<ul>
+    {{ macro.displayHighlightList(business) }}
+</ul>
+<h3> Sports News Highlights </h3>
+<ul>
+    {{ macro.displayHighlightList(sports) }}
+</ul>
+<h3> Weather News Highlights </h3>
+<ul>
+    {{ macro.displayHighlightList(weather) }}
+</ul>
+<h3> Technology News Highlights </h3>
+<ul>
+    {{ macro.displayHighlightList(tech) }}
+</ul>
+<h3> Political News Highlights </h3>
+<ul>
+    {{ macro.displayHighlightList(politics) }}
+</ul>
+{% endblock %}
