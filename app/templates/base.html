@@ -15,11 +15,17 @@
 </head>
 
 <body>
+    <!-- Navbar block  -->
+    {% block navbar %}
+    {% include 'navbar.html' %}
+    {% endblock %}
+
     <!-- Content block -->
+    <div >
+        {% block content %}
 
-    {% block content %}
-
-    {% endblock%}
+        {% endblock%}
+    </div>
 </body>
 
 </html>
