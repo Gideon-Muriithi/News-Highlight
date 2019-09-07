@@ -8,5 +8,6 @@ def index():
     '''
     
     message = 'Welcome to News Highlight App'
+    title = 'News Highlight'
 
-    return render_template('index.html', text = message)
+    return render_template('index.html', text = message, title = title)
