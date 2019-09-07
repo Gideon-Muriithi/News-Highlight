@@ -1,11 +1,15 @@
+
 class Config:
     '''
     General configuration parent class
     '''
-   	NEWS_SOURCES_BASE_URL = 'https://newsapi.org/v2/sources?language=en&category={}&apiKey={}'
-   	ARTICLES_API_BASE_URL = 'https://newsapi.org/v2/everything?language=en&sources={}&apiKey={}'
 
-clMOVIE_API_BASE_URLass ProdConfig:
+    # NEWS_SOURCES_BASE_URL = 'https://newsapi.org/v2/sources?apiKey='
+    ARTICLES_API_BASE_URL = 'https://newsapi.org/v2/everything?q={}&apiKey={}'
+   
+
+
+class ProdConfig(Config):
     '''
     Production  configuration child class
 
@@ -14,7 +18,8 @@ clMOVIE_API_BASE_URLass ProdConfig:
     '''
     pass
 
-class DevConfig:     
+
+class DevConfig(Config):
     '''
     Development  configuration child class
 
@@ -22,4 +27,4 @@ class DevConfig:
         Config: The parent configuration class with General configuration settings
     '''
 
-    DEBUG = True   
+    DEBUG = True

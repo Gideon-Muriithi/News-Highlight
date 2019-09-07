@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% if title %}
-    <title> {{ title }}</title>
+    <title> {{ text }}</title>
     {% else %}
     <title> News Highlight </title>
     {% endif %}
 </head>
 <body>
-    
+    <h1>{{ text }}</h1>
+    <!-- Popular news highlights section  -->
+    <h3> Business News Highlights </h3>
+    <ul>
+       {% for popular_highlight in business %}
+           <li>{{ popular_highlight.title}}</li>
+       {% endfor %}
+   </ul>
 </body>
 </html>
 
 
-<h1>{{ text }}</h1>
+
