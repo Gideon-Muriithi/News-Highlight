@@ -1,3 +1,5 @@
+{% import 'macros.html' as macro%}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,33 +19,23 @@
     <!-- Popular news highlights section  -->
     <h3> Business News Highlights </h3>
     <ul>
-        {% for business_highlight in business %}
-        <li>{{ business_highlight.title}}</li>
-        {% endfor %}
+        {{ macro.displayHighlightList(business) }}
     </ul>
     <h3> Sports News Highlights </h3>
     <ul>
-        {% for sport_highlight in sports %}
-        <li>{{ sport_highlight.title}}</li>
-        {% endfor %}
+        {{ macro.displayHighlightList(sports) }}
     </ul>
     <h3> Weather News Highlights </h3>
     <ul>
-        {% for weather_highlight in weather %}
-        <li>{{ weather_highlight.title}}</li>
-        {% endfor %}
+        {{ macro.displayHighlightList(weather) }}
     </ul>
     <h3> Technology News Highlights </h3>
     <ul>
-        {% for tech_highlight in tech %}
-        <li>{{ tech_highlight.title}}</li>
-        {% endfor %}
+        {{ macro.displayHighlightList(tech) }}
     </ul>
     <h3> Political News Highlights </h3>
     <ul>
-        {% for politic_highlight in politics %}
-        <li>{{ politic_highlight.title}}</li>
-        {% endfor %}
+        {{ macro.displayHighlightList(politics) }}
     </ul>
 </body>
 
