@@ -1,14 +1,17 @@
 {% macro displayHighlightList(highlight_list) %}
 
 {% for highlight in highlight_list %}
-<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
-    <img src="{{ article.urlToImage }}" alt="{{ article.title }} urlToImage" class="img-responsive">
-    <li class="text-center">
-        <a href="/article/{{article.id}}">
-            {{ highlight.title|truncate(10)}}</a>
-    </li>
+<!-- <div class="container">
+    <div class="row"> -->
+        <div class="col-sm-12 col-sm-4 col-md-2 col-lg-2 highlight-card" style = "margin-bottom: 20px; padding-left: 0px;">
+            <img src="{{ highlight.urlToImage }}" alt="{{ highlight.title }} urlToImage" class="img-responsive">
+            <li class="text-center">
+                <a href="/highlight/{{highlight.id}}">
+                    {{ highlight.title|truncate(20)}}</a>
+            </li>
+        <!-- </div>
+    </div> -->
 </div>
-
 {% endfor %}
 
 {% endmacro %}

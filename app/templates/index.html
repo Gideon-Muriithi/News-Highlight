@@ -1,27 +1,69 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
+<!-- Styles block -->
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.
+    com/bootstrap/3.4.0/css/bootstrap.min.css">
+{% endblock %}
 
 {% block content %}
-<h1 style = "margin-top: 70px;">{{ text }}</h1>
-<!-- Popular news highlights section  -->
-<h3> Business News Highlights </h3>
-<ul>
-    {{ macro.displayHighlightList(business) }}
-</ul>
-<h3> Sports News Highlights </h3>
-<ul>
-    {{ macro.displayHighlightList(sports) }}
-</ul>
-<h3> Weather News Highlights </h3>
-<ul>
-    {{ macro.displayHighlightList(weather) }}
-</ul>
-<h3> Technology News Highlights </h3>
-<ul>
-    {{ macro.displayHighlightList(tech) }}
-</ul>
-<h3> Political News Highlights </h3>
-<ul>
-    {{ macro.displayHighlightList(politics) }}
-</ul>
+<div class="container-fluid">
+    <h1 style="margin-top: 70px; text-align: center;">{{ text }}</h1>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h3> <strong>Business News Highlights</strong></h3>
+                <ul>
+                    {{ macro.displayHighlightList(business) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><strong>Sports News Highlights</strong></h3>
+                <ul>
+                    {{ macro.displayHighlightList(sports) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h3><strong>Weather News Highlights</strong></h3>
+                <ul>
+                    {{ macro.displayHighlightList(weather) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><strong>Technology News Highlights </strong></h3>
+                <ul>
+                    {{ macro.displayHighlightList(tech) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><strong>Political News Highlights</strong></h3>
+                <ul>
+                    {{ macro.displayHighlightList(politics) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

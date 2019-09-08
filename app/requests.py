@@ -53,28 +53,28 @@ def process_results(highlight_list):
         publishedAt = highlight_item.get('publishedAt')
 
         if urlToImage:
-            highlight_object = NewsHighlight(source, title, description, url, urlToImage, publishedAt)
+            highlight_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
             highlight_results.append(highlight_object)
 
     return highlight_results
 
-def get_article(id):
-    get_article_details_url = base_url.format(id,api_key)
+# def get_article(id):
+#     get_article_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_article_details_url) as url:
-        article_details_data = url.read()
-        article_details_response = json.loads(article_details_data)
+#     with urllib.request.urlopen(get_article_details_url) as url:
+#         article_details_data = url.read()
+#         article_details_response = json.loads(article_details_data)
 
-        article_object = None
-        if article_details_response:
-            id = article_details_response.get('id')
-            source = article_details_response.get('source.name')
-            title = article_details_response.get('title')
-            description = article_details_response.get('description')
-            url = article_details_response.get('url')
-            urlToImage = article_details_response.get('urlToImage')
-            publishedAt = article_details_response.get('publishedAt')
+#         article_object = None
+#         if article_details_response:
+#             id = article_details_response.get('id')
+#             source = article_details_response.get('source.name')
+#             title = article_details_response.get('title')
+#             description = article_details_response.get('description')
+#             url = article_details_response.get('url')
+#             urlToImage = article_details_response.get('urlToImage')
+#             publishedAt = article_details_response.get('publishedAt')
 
-            article_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
+#             article_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
 
-    return article_object
+#     return article_object

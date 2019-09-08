@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .requests import get_highlights, get_article
+from .requests import get_highlights
 
 @app.route('/')
 def index():
