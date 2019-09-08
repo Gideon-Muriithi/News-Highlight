@@ -1,6 +1,6 @@
 class NewsHighlight:
     '''
-    Movie class to define Movie Objects
+    NewsHightlight class to define highlight Objects
     '''
 
     def __init__(self, id, source, title, description, url, urlToImage, publishedAt):
@@ -11,4 +11,9 @@ class NewsHighlight:
         self.url = url
         self.urlToImage = urlToImage
         self.publishedAt = publishedAt
-    
+
+class Source:
+    '''
+    Source class to define source objects
+    '''
+

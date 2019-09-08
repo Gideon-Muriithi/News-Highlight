@@ -44,7 +44,7 @@ def process_results(highlight_list):
     highlight_results = []
 
     for highlight_item in highlight_list:
-        id = highlight_item.get('id')
+        id = highlight_item.get("source['id']")
         source = highlight_item.get('source.name')
         title = highlight_item.get('title')
         description = highlight_item.get('description')
@@ -58,23 +58,40 @@ def process_results(highlight_list):
 
     return highlight_results
 
-# def get_article(id):
-#     get_article_details_url = base_url.format(id,api_key)
+def get_sources():
 
-#     with urllib.request.urlopen(get_article_details_url) as url:
-#         article_details_data = url.read()
-#         article_details_response = json.loads(article_details_data)
+    get_article_details_url = base_url.format(id,api_key)
 
-#         article_object = None
-#         if article_details_response:
-#             id = article_details_response.get('id')
-#             source = article_details_response.get('source.name')
-#             title = article_details_response.get('title')
-#             description = article_details_response.get('description')
-#             url = article_details_response.get('url')
-#             urlToImage = article_details_response.get('urlToImage')
-#             publishedAt = article_details_response.get('publishedAt')
+    with urllib.request.urlopen(get_article_details_url) as url:
+        article_details_data = url.read()
+        article_details_response = json.loads(article_details_data)
 
-#             article_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
+        url_object = None
+        if article_details_response:
+            id = article_details_response.get('id')
+            source = article_details_response.get('source.name')
+            title = article_details_response.get('title')
+            description = article_details_response.get('description')
+            url = article_details_response.get('url')
+            urlToImage = article_details_response.get('urlToImage')
+            publishedAt = article_details_response.get('publishedAt')
 
-#     return article_object
+            url_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
+
+    return url_object
+
+def search_news(news_name):
+
+    search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(api_key, news_name)
+    with urllib.request.urlopen(search_news_url) as url:
+        search_news_data = url.read()
+        search_news_response = json.loads(search_news_data)
+
+        search_news_results = None
+
+        if search_news_response['results']:
+            search_news_list = search_news_response['results']
+            search_news_results = process_results(search_news_list)
+
+
+    return search_news_results
