@@ -1,18 +1,45 @@
+
+{% macro displaySourceList(source_list) %} 
+
+{% for source_row in source_list |batch(4)%}
+        <div class="row">	
+            {% for sources in source_row %}
+	            <div class="col-md-3">
+		           
+		            <div class="panel panel-warning">
+						<div class="panel-heading panel-white">
+							    {{ sources.name}}
+						</div>
+						<div class="panel-body">
+							<p>
+								{{ sources.description |truncate(100)}}
+
+							</p>
+							<a href="{{sources.url}}" class="btn btn-info btn-sm">Sources {{sources.name}}</a>
+						</div>
+						
+		
+					</div>
+		        </div>
+            {% endfor %}
+	        	
+        </div>
+    {% endfor %}
+
+{% endmacro %}
+
 {% macro displayHighlightList(highlight_list) %}
 
 {% for highlight in highlight_list %}
-<!-- <div class="container">
-    <div class="row"> -->
-<div class="col-sm-12 col-sm-4 col-md-2 col-lg-3 highlight-card" style="margin-bottom: 20px; padding-left: 0px;">
-    <img src="{{ highlight.urlToImage }}" alt="{{ highlight.title }} urlToImage" class="img-responsive">
-    <li class="text-center">
-        <a href="{{highlight.url}}">
-            {{ highlight.title|truncate(20)}}</a>
-    </li>
-    {{ highlight.publishedAt|truncate }}
-    <!-- </div>
-    </div> -->
-</div>
-{% endfor %}
 
-{% endmacro %}
+<div class="col-sm-12 col-sm-4 col-md-2 col-lg-3 highlight-card" style="margin-bottom: 20px; padding-left: 0px;">
+		<img src="{{ highlight.urlToImage }}" alt="{{ highlight.title }} urlToImage" class="img-responsive">
+		<li class="text-center">
+			<a href="{{highlight.url}}">
+				{{ highlight.title|truncate(20)}}</a>
+		</li>
+		{{ highlight.publishedAt|truncate }}
+	   
+	</div>
+	{% endfor %}
+	{% endmacro %}

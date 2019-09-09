@@ -1,6 +1,6 @@
 from flask import render_template, request,redirect,url_for
 from app import app
-from .requests import get_highlights, search_news, get_url
+from .requests import get_highlights, search_news, get_sources
 
 @app.route('/')
 def index():
@@ -11,24 +11,24 @@ def index():
     message = 'Welcome to News Highlight App'
     title = 'News Highlight'
 
-    # Getting popular highlight
+    # Getting news highlight
     business_highlights = get_highlights('business')
     sports_highlights = get_highlights('sports')
     weather_highlights = get_highlights('weather')
     tech_highlights = get_highlights('tech')
     politics_highlights = get_highlights('politics')
+    news_sources = get_sources()
 
-    # print(popular_highlights)
+    # print(news highlights)
 
     search_news = request.args.get('news_query')
 
     if search_news:
         return redirect(url_for('search', news_name = search_news))
     else:
-        return render_template('index.html', text = message, title = title, business = business_highlights,
-        sports = sports_highlights, weather = weather_highlights, tech = tech_highlights, politics = politics_highlights)
+        return render_template('index.html', text = message, title = title, business = business_highlights, source = news_sources,sports = sports_highlights, weather = weather_highlights, tech = tech_highlights, politics = politics_highlights)
 
-@app.route('/article/id')
+@app.route('/article/<id>')
 
 def NewsHighlight(id):
 
@@ -45,6 +45,7 @@ def search(news_name):
     '''
     View function to display the search results
     '''
+    # news = search_news(news_name)
     news_name_list = news_name.split(" ")
     news_name_format = "+".join(news_name_list)
     searched_news = search_news(news_name_format)

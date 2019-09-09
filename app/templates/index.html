@@ -11,14 +11,25 @@
 <div class="container-fluid">
     <div style="margin-top: 70px;">
         <form>
-            <input type="text" name="news_query" placeholder="Search for News Highlight" class="form-control">
+            <input type="text" name="news_query" placeholder="Search for an article" class="form-control">
             <br>
-            <input type="submit" value="Submit" class="btn btn-default">
+            <input type="submit" value="Submit" class="btn btn-info">
         </form>
     </div>
 
-    <h1 style="text-align: center;">{{ text }}</h1>
+    <h2 style="text-align: center; font-weight: bolder;">{{ text }}</h2>
     <div class="card">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><strong> News Highlights Sources </strong></h3>
+                    <ul>
+                        {{ macro.displaySourceList(source) }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <h3> <strong>Business News Highlights</strong></h3>
@@ -28,8 +39,8 @@
             </div>
         </div>
     </div>
-    <br>
-    <div class="card">
+
+    <div class="card" id="News">
         <div class="row">
             <div class="col-md-12">
                 <h3><strong>Sports News Highlights</strong></h3>
@@ -73,5 +84,4 @@
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

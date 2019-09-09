@@ -3,12 +3,15 @@ import urllib.request,json
 from .models import news_highlight
 
 NewsHighlight = news_highlight.NewsHighlight
+Source = news_highlight.Source
+
 
 #Getting api key
 api_key = app.config['NEWS_HIGHLIGHT_API_KEY']
 
 # Getting the news highlight base url
 base_url = app.config["ARTICLES_API_BASE_URL"]
+source_url = app.config["NEWS_SOURCES_BASE_URL"]
 
 
 def get_highlights(category):
@@ -58,39 +61,63 @@ def process_results(highlight_list):
 
     return highlight_results
 
+
 def get_sources():
+	'''
+	Function that gets the json response to our url request
+	'''
+	get_sources_url = source_url.format(api_key)
 
-    get_article_details_url = base_url.format(id,api_key)
+	with urllib.request.urlopen(get_sources_url) as url:
+		get_sources_data = url.read()
+		get_sources_response = json.loads(get_sources_data)
 
-    with urllib.request.urlopen(get_article_details_url) as url:
-        article_details_data = url.read()
-        article_details_response = json.loads(article_details_data)
+		sources_results = None
 
-        url_object = None
-        if article_details_response:
-            id = article_details_response.get('id')
-            source = article_details_response.get('source.name')
-            title = article_details_response.get('title')
-            description = article_details_response.get('description')
-            url = article_details_response.get('url')
-            urlToImage = article_details_response.get('urlToImage')
-            publishedAt = article_details_response.get('publishedAt')
+		if get_sources_response['sources']:
+			sources_results_list = get_sources_response['sources']
+			sources_results = process_sources(sources_results_list)
 
-            url_object = NewsHighlight(id, source, title, description, url, urlToImage, publishedAt)
+	return sources_results
 
-    return url_object
+def process_sources(sources_list):
+	'''
+	Function that processes the news sources results and turns them into a list of objects
+	Args:
+		sources_list: A list of dictionaries that contain sources details
+	Returns:
+		sources_results: A list of sources objects
+	'''
+	sources_results = []
+
+	for source_item in sources_list:
+		id = source_item.get('id') 
+		name = source_item.get('name')
+		description = source_item.get('description')
+		url = source_item.get('url')
+		language = source_item.get('language')
+		country = source_item.get('country')
+
+
+		sources_object = Source(id,name,description,url,country,language)
+		sources_results.append(sources_object)
+
+
+	return sources_results
+
+
 
 def search_news(news_name):
 
-    search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(api_key, news_name)
+    search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(news_name,api_key)
     with urllib.request.urlopen(search_news_url) as url:
         search_news_data = url.read()
         search_news_response = json.loads(search_news_data)
-
+        print(search_news)
         search_news_results = None
 
-        if search_news_response['results']:
-            search_news_list = search_news_response['results']
+        if search_news_response['articles']:
+            search_news_list = search_news_response['articles']
             search_news_results = process_results(search_news_list)
 
 
