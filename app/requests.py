@@ -13,9 +13,9 @@ source_url = None
 
 def configure_request(app):
     global api_key,base_url,source_url
-    NEWS_API_KEY = app.config['NEWS_API_KEY']
-    base_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'
-    source_url = 'https://newsapi.org/v2/sources?apiKey={}'
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config['ARTICLES_API_BASE_URL']
+    source_url = app.config["NEWS_SOURCES_BASE_URL"]
 
 
 def get_highlights(category):
