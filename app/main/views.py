@@ -1,8 +1,8 @@
 from flask import render_template, request,redirect,url_for
-from app import app
-from .requests import get_highlights, search_news, get_sources
+from . import main
+from ..requests import get_highlights, search_news, get_sources
 
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page function that returns the index page and its data
@@ -28,7 +28,7 @@ def index():
     else:
         return render_template('index.html', text = message, title = title, business = business_highlights, source = news_sources,sports = sports_highlights, weather = weather_highlights, tech = tech_highlights, politics = politics_highlights)
 
-@app.route('/article/<id>')
+@main.route('/article/<id>')
 
 def NewsHighlight(id):
 
@@ -40,7 +40,7 @@ def NewsHighlight(id):
 
     return render_template('article.html',title = title, article = article)
 
-@app.route('/search/<news_name>')
+@main.route('/search/<news_name>')
 def search(news_name):
     '''
     View function to display the search results

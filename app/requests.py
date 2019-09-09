@@ -1,17 +1,21 @@
-from app import app
 import urllib.request,json
-from .models import news_highlight
-
-NewsHighlight = news_highlight.NewsHighlight
-Source = news_highlight.Source
-
+from .models import NewsHighlight, Source
 
 #Getting api key
-api_key = app.config['NEWS_HIGHLIGHT_API_KEY']
+api_key = None
 
-# Getting the news highlight base url
-base_url = app.config["ARTICLES_API_BASE_URL"]
-source_url = app.config["NEWS_SOURCES_BASE_URL"]
+# Getting the article base url
+base_url = None
+
+# Getting the source base url
+source_url = None
+
+
+def configure_request(app):
+    global api_key,base_url,source_url
+    NEWS_API_KEY = app.config['NEWS_API_KEY']
+    base_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'
+    source_url = 'https://newsapi.org/v2/sources?apiKey={}'
 
 
 def get_highlights(category):
