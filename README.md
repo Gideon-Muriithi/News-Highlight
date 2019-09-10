@@ -24,7 +24,7 @@ Navigate to  http://127.0.0.1:5000/ . The app will automatically reload if you c
 Flask, Jinja2, HTML, CSS, Bootstrap.
 
 # Link to the deploye site
-https://gideon's/news/highlight.herokuapp.com
+https://gideon-news-highlight.herokuapp.com/ 
 # Licence
 ## MIT License
 Copyright (c) 2019 Gideon Muriithi
