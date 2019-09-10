@@ -3,3 +3,4 @@ virtual/
 instance/
 .vscode/
 .env
+start.sh

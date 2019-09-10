@@ -8,10 +8,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: rgb(226, 226, 141)">
     <div style="margin-top: 70px;">
         <form>
-            <input type="text" name="news_query" placeholder="Search for an article" class="form-control">
+            <input type="text" name="news_query" placeholder="Search for an article..." class="form-control" style="width: 300px">
             <br>
             <input type="submit" value="Submit" class="btn btn-info">
         </form>
@@ -22,7 +22,7 @@
         <div class="card">
             <div class="row">
                 <div class="col-md-12">
-                    <h3><strong> News Highlights Sources </strong></h3>
+                    <h3><strong> News Sources </strong></h3>
                     <ul>
                         {{ macro.displaySourceList(source) }}
                     </ul>

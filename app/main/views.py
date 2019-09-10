@@ -19,12 +19,10 @@ def index():
     politics_highlights = get_highlights('politics')
     news_sources = get_sources()
 
-    # print(news highlights)
-
     search_news = request.args.get('news_query')
 
     if search_news:
-        return redirect(url_for('search', news_name = search_news))
+        return redirect(url_for('.search', news_name = search_news))
     else:
         return render_template('index.html', text = message, title = title, business = business_highlights, source = news_sources,sports = sports_highlights, weather = weather_highlights, tech = tech_highlights, politics = politics_highlights)
 
@@ -45,7 +43,7 @@ def search(news_name):
     '''
     View function to display the search results
     '''
-    # news = search_news(news_name)
+
     news_name_list = news_name.split(" ")
     news_name_format = "+".join(news_name_list)
     searched_news = search_news(news_name_format)

@@ -113,11 +113,11 @@ def process_sources(sources_list):
 
 def search_news(news_name):
 
-    search_news_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(news_name,api_key)
+    search_news_url = base_url.format(news_name, api_key)
     with urllib.request.urlopen(search_news_url) as url:
         search_news_data = url.read()
         search_news_response = json.loads(search_news_data)
-        print(search_news)
+        
         search_news_results = None
 
         if search_news_response['articles']:
